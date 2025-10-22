@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub')
-        DOCKERHUB_REPO = 'cihuahuahua/demo-app'
+        DOCKERHUB_REPO = 'cihuyyyy/demo-app'
         KUBE_CONFIG = credentials('kubeconfig')
     }
 
@@ -25,7 +25,7 @@ pipeline {
         withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
             sh '''
                 echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                docker push cihuahuahua/demo-app:latest
+                docker push cihuyyyy/demo-app:latest
             '''
              }
          }
