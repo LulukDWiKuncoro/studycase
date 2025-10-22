@@ -1,0 +1,7 @@
+image:
+  repository: cihuahuahua/demo-app
+  tag: latest
+
+service:
+  type: NodePort
+  port: 5000
