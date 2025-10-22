@@ -21,13 +21,16 @@ pipeline {
         }
 
         stage('Push to DockerHub') {
-            steps {
-                sh '''
-                echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin
-                docker push $DOCKERHUB_REPO:latest
-                '''
-            }
-        }
+    steps {
+        withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+            sh '''
+                echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                docker push cihuahuahua/demo-app:latest
+            '''
+             }
+         }
+      }
+
 
         stage('Deploy to Kubernetes') {
             steps {
