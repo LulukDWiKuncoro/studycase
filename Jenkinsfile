@@ -36,8 +36,8 @@ pipeline {
     steps {
         withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
             sh '''
-            kubectl apply -f helm/demo-app/templates/deployment.yaml
-            kubectl apply -f helm/demo-app/templates/service.yaml
+            kubectl apply -f helm/demo-app/templates/deployment.yaml --kubeconfig=/var/lib/jenkins/.kube/config
+            kubectl apply -f helm/demo-app/templates/service.yaml --kubeconfig=/var/lib/jenkins/.kube/config
             '''
         }
     }
