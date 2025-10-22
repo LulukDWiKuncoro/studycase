@@ -3,14 +3,14 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
-        DOCKERHUB_REPO = '<your-dockerhub-username>/demo-app'
+        DOCKERHUB_REPO = '<cihuahuahua>/demo-app'
         KUBE_CONFIG = credentials('kubeconfig')
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/LulukDWiKuncoro/studycase.git'
+                git branch: 'main', url: 'https://github.com/LulukDWiKuncoro/studycase.git'
             }
         }
 
