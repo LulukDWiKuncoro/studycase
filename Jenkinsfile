@@ -33,13 +33,16 @@ pipeline {
 
 
         stage('Deploy to Kubernetes') {
-    withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG_FILE')]) {
-        sh '''
-        export KUBECONFIG=$KUBECONFIG_FILE
-        helm upgrade --install demo-app ./helm/demo-app --namespace default --create-namespace
-        '''
+    steps {
+        withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+            sh '''
+            kubectl apply -f helm/demo-app/templates/deployment.yaml
+            kubectl apply -f helm/demo-app/templates/service.yaml
+            '''
+        }
     }
 }
+
 
 
         stage('Verify Deployment') {
