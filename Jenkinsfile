@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-cred')
-        DOCKERHUB_REPO = '<cihuahuahua>/demo-app'
+        DOCKERHUB_REPO = 'cihuahuahua/demo-app'
         KUBE_CONFIG = credentials('kubeconfig')
     }
 
